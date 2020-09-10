@@ -7342,21 +7342,23 @@ AFRAME.registerSystem('arjs', {
             //		awful resize trick
             //////////////////////////////////////////////////////////////////////////////
             // KLUDGE
-            // window.addEventListener('resize', onResize)
-            // function onResize() {
-            //     var arSource = _this._arSession.arSource
+            window.addEventListener('resize', onResize)
+            function onResize() {
+                var arSource = _this._arSession.arSource
 
-            //     // ugly kludge to get resize on aframe... not even sure it works
-            //     if (arProfile.contextParameters.trackingBackend !== 'tango') {
-            //         arSource.copyElementSizeTo(document.body)
-            //     }
+                // ugly kludge to get resize on aframe... not even sure it works
+                // if (arProfile.contextParameters.trackingBackend !== 'tango') {
+                //     arSource.copyElementSizeTo(document.body)
+                // }body
 
-            //     // fixing a-frame css
-            //     var buttonElement = document.querySelector('.a-enter-vr')
-            //     if (buttonElement) {
-            //         buttonElement.style.position = 'fixed'
-            //     }
-            // }
+                // fixing a-frame css
+                var buttonElement = document.querySelector('.a-enter-vr')
+                if (buttonElement) {
+                    buttonElement.style.position = 'fixed'
+                }
+
+                console.log("a-frame resizsing...")
+            }
 
             //////////////////////////////////////////////////////////////////////////////
             //		honor .debugUIEnabled
@@ -7383,15 +7385,15 @@ AFRAME.registerSystem('arjs', {
         //////////////////////////////////////////////////////////////////////////////
         // TODO this is crappy - code an exponential backoff - max 1 seconds
         // KLUDGE: kludge to write a 'resize' event
-        var startedAt = Date.now()
-        var timerId = setInterval(function () {
-            if (Date.now() - startedAt > 10000 * 1000) {
-                clearInterval(timerId)
-                return
-            }
-            // onResize()
-            window.dispatchEvent(new Event('resize'));
-        }, 1000 / 30)
+        // var startedAt = Date.now()
+        // var timerId = setInterval(function () {
+        //     if (Date.now() - startedAt > 10000 * 1000) {
+        //         clearInterval(timerId)
+        //         return
+        //     }
+        //     // onResize()
+        //     window.dispatchEvent(new Event('resize'));
+        // }, 1000 / 30)
     },
 
     tick: function () {
