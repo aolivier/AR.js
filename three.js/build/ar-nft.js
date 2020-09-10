@@ -1548,9 +1548,13 @@ ARjs.Source.prototype.init = function (onReady, onError) {
     this.domElement.style.zIndex = '-2'
     this.domElement.setAttribute('id', 'arjs-video');
 
+    this.root = document.createElement("div");
+    this.root.id = "scene_root";
+
     return this
     function onSourceReady() {
-        document.body.appendChild(_this.domElement);
+        // document.body.appendChild(_this.domElement);
+        _this.root.appendChild(_this.domElement);
         window.dispatchEvent(new CustomEvent('arjs-video-loaded', {
             detail: {
                 component: document.querySelector('#arjs-video'),
@@ -1600,11 +1604,18 @@ ARjs.Source.prototype._initSourceVideo = function (onReady) {
     domElement.loop = true;
     domElement.muted = true;
 
+    let sceneRoot = document.getElementById("scene_root");
+
     // trick to trigger the video on android
-    document.body.addEventListener('click', function onClick() {
-        document.body.removeEventListener('click', onClick);
+    sceneRoot.addEventListener('click', function onClick() {
+        sceneRoot.removeEventListener('click', onClick);
         domElement.play()
     });
+
+    // document.body.addEventListener('click', function onClick() {
+    //     document.body.removeEventListener('click', onClick);
+    //     domElement.play()
+    // });
 
     domElement.width = this.parameters.sourceWidth;
     domElement.height = this.parameters.sourceHeight;
@@ -1687,9 +1698,14 @@ ARjs.Source.prototype._initSourceWebcam = function (onReady, onError) {
             var event = new CustomEvent('camera-init', { stream: stream });
             window.dispatchEvent(event);
             // to start the video, when it is possible to start it only on userevent. like in android
-            document.body.addEventListener('click', function () {
+
+            let sceneRoot = document.getElementById("scene_root");
+            sceneRoot.addEventListener('click', function () {
                 domElement.play();
             });
+            // document.body.addEventListener('click', function () {
+            //     domElement.play();
+            // });
             // domElement.play();
 
             onReady();
@@ -2717,6 +2733,7 @@ ARjs.MarkersAreaControls = THREEx.ArMultiMarkerControls = function(arToolkitCont
 		// change matrix mode - [modelViewMatrix, cameraTransformMatrix]
 		changeMatrixMode : parameters.changeMatrixMode !== undefined ? parameters.changeMatrixMode : 'modelViewMatrix',
 	}
+
 	
 	this.object3d.visible = false
 	// honor obsolete stuff - add a warning to use
