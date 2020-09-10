@@ -7342,21 +7342,21 @@ AFRAME.registerSystem('arjs', {
             //		awful resize trick
             //////////////////////////////////////////////////////////////////////////////
             // KLUDGE
-            window.addEventListener('resize', onResize)
-            function onResize() {
-                var arSource = _this._arSession.arSource
+            // window.addEventListener('resize', onResize)
+            // function onResize() {
+            //     var arSource = _this._arSession.arSource
 
-                // ugly kludge to get resize on aframe... not even sure it works
-                if (arProfile.contextParameters.trackingBackend !== 'tango') {
-                    arSource.copyElementSizeTo(document.body)
-                }
+            //     // ugly kludge to get resize on aframe... not even sure it works
+            //     if (arProfile.contextParameters.trackingBackend !== 'tango') {
+            //         arSource.copyElementSizeTo(document.body)
+            //     }
 
-                // fixing a-frame css
-                var buttonElement = document.querySelector('.a-enter-vr')
-                if (buttonElement) {
-                    buttonElement.style.position = 'fixed'
-                }
-            }
+            //     // fixing a-frame css
+            //     var buttonElement = document.querySelector('.a-enter-vr')
+            //     if (buttonElement) {
+            //         buttonElement.style.position = 'fixed'
+            //     }
+            // }
 
             //////////////////////////////////////////////////////////////////////////////
             //		honor .debugUIEnabled
