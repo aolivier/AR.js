@@ -1548,13 +1548,16 @@ ARjs.Source.prototype.init = function (onReady, onError) {
     this.domElement.style.zIndex = '-2'
     this.domElement.setAttribute('id', 'arjs-video');
 
-    this.root = document.createElement("div");
-    this.root.id = "scene_root";
+    // this.root = document.createElement("div");
+    // this.root.id = "scene_root";
 
     return this
     function onSourceReady() {
+
+        console.log("video source ready");
         // document.body.appendChild(_this.domElement);
-        _this.root.appendChild(_this.domElement);
+        let sceneRoot = document.getElementById("scene_root");
+        sceneRoot.appendChild(_this.domElement);
         window.dispatchEvent(new CustomEvent('arjs-video-loaded', {
             detail: {
                 component: document.querySelector('#arjs-video'),
