@@ -178,7 +178,7 @@ AFRAME.registerSystem('arjs', {
 
                 // ugly kludge to get resize on aframe... not even sure it works
                 // if (arProfile.contextParameters.trackingBackend !== 'tango') {
-                //     arSource.copyElementSizeTo(document.body)
+                    arSource.copyElementSizeTo(document.body)
                 // }body
 
                 // fixing a-frame css
