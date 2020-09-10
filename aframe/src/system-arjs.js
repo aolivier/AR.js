@@ -176,10 +176,12 @@ AFRAME.registerSystem('arjs', {
             function onResize() {
                 var arSource = _this._arSession.arSource
 
+                var container = document.querySelector('#ar-container')
                 // ugly kludge to get resize on aframe... not even sure it works
                 // if (arProfile.contextParameters.trackingBackend !== 'tango') {
                 //     arSource.copyElementSizeTo(document.body)
-                // }body
+                arSource.copyElementSizeTo(container)
+                // }
 
                 // fixing a-frame css
                 var buttonElement = document.querySelector('.a-enter-vr')
@@ -209,6 +211,8 @@ AFRAME.registerSystem('arjs', {
                 containerElement.appendChild(sessionDebugUI.domElement)
             }
         })
+
+        window.dispatchEvent(new Event('resize'));
 
         //////////////////////////////////////////////////////////////////////////////
         //		Code Separator
