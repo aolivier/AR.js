@@ -7419,7 +7419,7 @@ AFRAME.registerSystem('arjs', {
                 clearInterval(timerId)
                 return
             }
-            onResize()
+            // onResize()
             window.dispatchEvent(new Event('resize'));
         }, 1000 / 30)
     },
