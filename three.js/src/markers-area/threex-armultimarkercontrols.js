@@ -16,6 +16,7 @@ ARjs.MarkersAreaControls = THREEx.ArMultiMarkerControls = function(arToolkitCont
 		// change matrix mode - [modelViewMatrix, cameraTransformMatrix]
 		changeMatrixMode : parameters.changeMatrixMode !== undefined ? parameters.changeMatrixMode : 'modelViewMatrix',
 	}
+
 	
 	this.object3d.visible = false
 	// honor obsolete stuff - add a warning to use
