@@ -192,7 +192,7 @@ AFRAME.registerSystem('arjs', {
                     buttonElement.style.position = 'fixed'
                 }
 
-                console.log("a-frame i hate this function...")
+                // console.log("a-frame i hate this function...")
             }
 
             //////////////////////////////////////////////////////////////////////////////
